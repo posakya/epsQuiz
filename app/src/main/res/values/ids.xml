@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="LK" type="id">L</item>
+    <item name="PK" type="id">P</item>
+    <item name="N" type="id">N</item>
+    <item name="E" type="id">E</item>
+    <item name="S"  type="id">S</item>
+    <item name="I" type="id">I</item>
+    <item name="RK" type="id">R</item>
+    <item name="R" type="id">R</item>
+    <item name="SK" type="id">S</item>
+    <item name="K" type="id">K</item>
+    <item name="LearnKorean" type="id">Learn Korean</item>
+    <item name="PracticeKorean" type="id">Practice Korean</item>
+    <item name="NewsKorean" type="id">News</item>
+    <item name="EPSProcess" type="id">EPS Process</item>
+    <item name="Shelter" type="id">Shelters In Korea</item>
+    <item name="Investors" type="id">Investors In Korea</item>
+    <item name="Restaurants" type="id">Restaurants In Korea</item>
+    <item name="Remittance" type="id">Remittance</item>
+    <item name="Shopping" type="id">Shopping In Korea</item>
+    <item name="KoreanReturnees" type="id">Korean Returnees</item>
+</resources>

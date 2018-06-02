@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:title="             Home" />
+        <item
+            android:id="@+id/nav_learn_korean"
+            android:title="             Learn Korean" />
+        <item
+            android:id="@+id/nav_practice_korean"
+            android:title="             Practice Korean" />
+        <item
+            android:id="@+id/nav_news"
+            android:title="             News" />
+        <item
+            android:id="@+id/nav_eps_process"
+            android:title="             EPS Process"
+            />
+        <item
+            android:id="@+id/nav_shelters_in_korea"
+            android:title="             Shelters In Korea"
+            />
+        <item
+            android:id="@+id/nav_investors_from_korea"
+            android:title="             Investors From Korea"
+            />
+        <item
+            android:id="@+id/nav_restaurants_from_korea"
+            android:title="             Restaurants In Korea"
+            />
+        <item
+            android:id="@+id/nav_remittance"
+            android:title="             Remittance"
+            />
+        <item
+            android:id="@+id/nav_shopping_in_korea"
+            android:title="             Shopping In Korea"
+            />
+        <item
+            android:id="@+id/nav_korea_returnees"
+            android:title="             Korea Returnees"
+            />
+        <item
+            android:id="@+id/nav_disclaimer"
+            android:title="             Disclaimer" />
+        <item
+            android:id="@+id/nav_about_us"
+            android:title="             About Us" />
+        <item
+            android:id="@+id/nav_feedback"
+            android:title="             Feedback" />
+        <item
+            android:id="@+id/nav_share"
+            android:title="             Share" />
+        <item
+            android:id="@+id/nav_rate"
+            android:title="             Rate Us" />
+
+    </group>
+
+    <item android:title="">
+        <menu>
+        </menu>
+    </item>
+
+</menu>

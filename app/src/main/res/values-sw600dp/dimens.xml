@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="imageSize">285dp</dimen>
+    <dimen name="textHeight">75dp</dimen>
+    <dimen name="textSize">30sp</dimen>
+    <dimen name="home_text_height">180dp</dimen>
+    <dimen name="home_text_size">120sp</dimen>
+    <dimen name="progresBarPosition">140dp</dimen>
+    <dimen name="lessonItemSize">220dp</dimen>
+    <dimen name="date_text_size">22sp</dimen>
+    <dimen name="news_image_width">150dp</dimen>
+    <dimen name="news_image_height">150dp</dimen>
+</resources>

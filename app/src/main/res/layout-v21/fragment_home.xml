@@ -1,0 +1,38 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/mainContent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.creatu.lokesh.epssathi.side_menu.Home">
+
+  <GridView
+      android:background="#ffff"
+      android:scrollbarThumbVertical="@android:color/transparent"
+      android:id="@+id/gridView"
+      android:layout_marginLeft="2dp"
+      android:layout_marginRight="2dp"
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:horizontalSpacing="-2dp"
+      android:verticalSpacing="-7dp"
+      android:numColumns="2"
+      android:stretchMode="columnWidth"
+      android:gravity="center">
+
+  </GridView>
+
+  <com.wang.avi.AVLoadingIndicatorView
+      android:layout_centerVertical="true"
+      android:layout_centerHorizontal="true"
+      android:id="@+id/avi"
+      android:layout_width="60dp"
+      android:layout_height="60dp"
+      style="@style/AVLoadingIndicatorView"
+      android:visibility="gone"
+      app:indicatorName="LineSpinFadeLoaderIndicator"
+      app:indicatorColor="#dedede"
+      />
+
+
+</RelativeLayout>
