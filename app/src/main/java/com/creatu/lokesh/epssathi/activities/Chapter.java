@@ -140,7 +140,7 @@ public class Chapter extends AppCompatActivity {
 
                         for (int i = 0; i<results.length(); i++){
                             JSONObject c = results.getJSONObject(i);
-                            String id = c.optString("id");
+                            String id = String .valueOf(i+1);
                             String chapter_title = c.optString("chapter_title");
                             String description = c.optString("description");
 

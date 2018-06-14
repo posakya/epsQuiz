@@ -98,7 +98,7 @@ public class LearnKorean extends Fragment {
 
                         for (int i = 0; i<results.length(); i++){
                             JSONObject c = results.getJSONObject(i);
-                            String id = c.optString("id");
+                            String id = String .valueOf(i+1);
                             String title = c.optString("title");
 
                             HashMap<String, String> lessonLists = new HashMap<>();

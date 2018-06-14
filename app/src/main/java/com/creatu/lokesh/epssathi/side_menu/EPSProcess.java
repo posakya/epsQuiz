@@ -1,6 +1,7 @@
 package com.creatu.lokesh.epssathi.side_menu;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -11,25 +12,26 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import com.creatu.lokesh.epssathi.MainActivity;
 import com.creatu.lokesh.epssathi.R;
-import com.creatu.lokesh.epssathi.adapter.RecyclerViewAdapter;
-import com.creatu.lokesh.epssathi.model_class.NewsModal;
-import com.creatu.lokesh.epssathi.model_class.NewsModalClass;
+import com.creatu.lokesh.epssathi.activities.EpsCategory;
+import com.creatu.lokesh.epssathi.adapter.EpsDocumentAdapter;
+import com.creatu.lokesh.epssathi.model_class.EpsDocumentModelClass;
+import com.creatu.lokesh.epssathi.model_class.EpsProcessModelClass;
 import com.creatu.lokesh.epssathi.model_class.Results;
-import com.creatu.lokesh.epssathi.response.NewsResponse;
-import com.creatu.lokesh.epssathi.retrofit_interfaces.NewsInterface;
+import com.creatu.lokesh.epssathi.response.RetrofitResponse;
+import com.creatu.lokesh.epssathi.retrofit_interfaces.ApiInterface;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,77 +39,69 @@ import io.reactivex.schedulers.Schedulers;
 public class EPSProcess extends Fragment {
 
     View view;
-    RecyclerView recyclerView;
-    List<Results> list;
+    ListView listView;
+    AVLoadingIndicatorView avi;
+    List<Results> epsDocumentModelClasses = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.recycler_view, container, false);
+        view = inflater.inflate(R.layout.list_view, container, false);
         getActivity().setTitle("EPS Process");
-        recyclerView = view.findViewById(R.id.recyclerView);
+        listView = view.findViewById(R.id.listView);
+        avi = view.findViewById(R.id.avi);
 
-        getNewsJson();
+        avi.show();
+
+        getDocumentDetail();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Results epsDocumentModelClass = epsDocumentModelClasses.get(position);
+                Intent intent = new Intent(getActivity(), EpsCategory.class);
+                intent.putExtra("slug",epsDocumentModelClass.getSlug());
+                intent.putExtra("title",epsDocumentModelClass.getTitle());
+                startActivity(intent);
+            }
+        });
 
         return view;
     }
 
-    public void getNewsJson(){
+    public void getDocumentDetail(){
+        ApiInterface documentApi = RetrofitResponse.getRetrofit().create(ApiInterface.class);
 
-        NewsInterface newsInterface = NewsResponse.getNewsResponse().create(NewsInterface.class);
+        Call<EpsProcessModelClass> listCall = documentApi.getDocument();
 
-
-        Observable<NewsModal> observable = newsInterface.getNews()
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread());
-
-        observable.subscribe(new Observer<NewsModal>() {
+        listCall.enqueue(new Callback<EpsProcessModelClass>() {
             @Override
-            public void onSubscribe(Disposable d) {
+            public void onResponse(Call<EpsProcessModelClass> call, Response<EpsProcessModelClass> response) {
+                System.out.println("Response : "+response.body().getResults());
 
-            }
 
-            @Override
-            public void onNext(NewsModal newsModal) {
+                List<Results> results = response.body().getResults();
 
-                list = new ArrayList<>();
-                List<Results> results = newsModal.getResults();
-                Log.d("size", String.valueOf(results.size()));
 
-                for (int i=0; i<results.size(); i++){
-                    Results results1 = new Results();
-                    results1.setId(results.get(i).getId());
-                    results1.setDescription(results.get(i).getDescription());
-                    results1.setImage(results.get(i).getImage());
-                    results1.setNewsdate(results.get(i).getNewsdate());
-                    results1.setTitle(results.get(i).getTitle());
-                    list.add(results1);
+                for (Results result : results){
+                    epsDocumentModelClasses.add(result);
                 }
 
-                RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(list,getActivity());
-                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-                recyclerView.setHasFixedSize(true);
-                recyclerView.setLayoutManager(layoutManager);
-                recyclerView.setItemAnimator(new DefaultItemAnimator());
-                recyclerView.setAdapter(recyclerViewAdapter);
-                recyclerViewAdapter.notifyDataSetChanged();
 
+                EpsDocumentAdapter adapter = new EpsDocumentAdapter(getActivity(),epsDocumentModelClasses);
+                listView.setAdapter(adapter);
+
+                avi.hide();
             }
 
             @Override
-            public void onError(Throwable e) {
-
-                System.out.println("Error : "+e);
-
-            }
-
-            @Override
-            public void onComplete() {
+            public void onFailure(Call<EpsProcessModelClass> call, Throwable t) {
+                System.out.println("ResponseError : "+t.getMessage());
+                avi.hide();
 
             }
-
-       });
+        });
 
 
     }

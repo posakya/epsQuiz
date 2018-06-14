@@ -16,4 +16,5 @@
     <dimen name="date_text_size">16sp</dimen>
     <dimen name="news_image_width">100dp</dimen>
     <dimen name="news_image_height">100dp</dimen>
+    <dimen name="document_title_size">20sp</dimen>
 </resources>

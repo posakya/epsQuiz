@@ -10,4 +10,5 @@
     <dimen name="date_text_size">30sp</dimen>
     <dimen name="news_image_width">200dp</dimen>
     <dimen name="news_image_height">200dp</dimen>
+    <dimen name="document_title_size">40sp</dimen>
 </resources>

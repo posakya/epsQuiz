@@ -7,25 +7,9 @@ package com.creatu.lokesh.epssathi.model_class;
 
 public class Results
 {
-    private String id;
-
     private String title;
 
-    private String description;
-
-    private String image;
-
-    private String newsdate;
-
-    public String getId ()
-    {
-        return id;
-    }
-
-    public void setId (String id)
-    {
-        this.id = id;
-    }
+    private String slug;
 
     public String getTitle ()
     {
@@ -37,41 +21,20 @@ public class Results
         this.title = title;
     }
 
-    public String getDescription ()
+    public String getSlug ()
     {
-        return description;
+        return slug;
     }
 
-    public void setDescription (String description)
+    public void setSlug (String slug)
     {
-        this.description = description;
-    }
-
-    public String getImage ()
-    {
-        return image;
-    }
-
-    public void setImage (String image)
-    {
-        this.image = image;
-    }
-
-    public String getNewsdate ()
-    {
-        return newsdate;
-    }
-
-    public String setNewsdate (String newsdate)
-    {
-        this.newsdate = newsdate;
-        return newsdate;
+        this.slug = slug;
     }
 
     @Override
     public String toString()
     {
-        return "ClassPojo [id = "+id+", title = "+title+", description = "+description+", image = "+image+", newsdate = "+newsdate+"]";
+        return "ClassPojo [title = "+title+", slug = "+slug+"]";
     }
 }
 
